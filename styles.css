@@ -16,8 +16,7 @@
   --ink-soft:    #7a7a7a;
   --border:      rgba(201, 168, 76, 0.25);
 
-  --font-serif:  'Cormorant Garamond', Georgia, serif;
-  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+  --font:        'Montserrat', system-ui, -apple-system, sans-serif;
 
   --nav-h:       72px;
   --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
@@ -36,7 +35,7 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   background: var(--white);
   color: var(--ink);
   line-height: 1.7;
@@ -59,18 +58,18 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* ── TYPOGRAPHY ── */
 .h2 {
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: var(--font);
+  font-weight: 200;
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   color: var(--ink);
 }
 
 .h3 {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 500;
+  font-weight: 200;
   color: var(--ink);
 }
 
@@ -82,9 +81,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .eyebrow {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 300;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
@@ -97,10 +96,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 0.5rem;
   padding: 0.65rem 1.5rem;
   border-radius: 2px;
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 300;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: background 0.3s var(--ease-gold),
               color 0.3s var(--ease-gold),
@@ -167,12 +166,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.15rem;
-  font-weight: 600;
+  font-weight: 200;
   color: var(--gold);
   white-space: nowrap;
   flex-shrink: 0;
+  letter-spacing: 0.15em;
 }
 
 .brand__diamond {
@@ -192,8 +192,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .nav__links a {
   font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-weight: 300;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-mid);
   transition: color 0.2s;
@@ -245,7 +245,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 0;
   background: var(--white);
   border-top: 1px solid var(--border);
-  padding: 1.5rem clamp(1.25rem, 5vw, 4rem);
+  padding: 0 clamp(1.25rem, 5vw, 4rem);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s var(--ease-out), padding 0.4s;
@@ -253,6 +253,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .nav__drawer.is-open {
   max-height: 600px;
+  padding: 1.5rem clamp(1.25rem, 5vw, 4rem);
 }
 
 .nav__drawer nav {
@@ -265,8 +266,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: block;
   padding: 0.75rem 0;
   font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-weight: 300;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-mid);
   border-bottom: 1px solid var(--border);
@@ -350,7 +351,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: center;
   gap: 0.6rem;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 300;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold-light);
@@ -365,11 +366,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .hero__title {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: clamp(2.5rem, 7vw, 5.5rem);
-  font-weight: 500;
+  font-weight: 200;
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   color: var(--white);
 }
 
@@ -388,9 +389,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .stat__value {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 600;
+  font-weight: 200;
   color: var(--gold-light);
   line-height: 1;
 }
@@ -503,9 +504,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .overview__card h3 {
-  font-family: var(--font-sans);
+  font-family: var(--font);
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 300;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -513,9 +514,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .overview__value {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 200;
   color: var(--ink);
 }
 
@@ -567,9 +568,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .level--reverse { grid-template-columns: 80px 1fr 1fr; }
 
 .level__label {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 100;
   color: var(--gold);
   opacity: 0.5;
   padding-top: 0.2rem;
@@ -577,9 +578,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .level__title {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: clamp(1.1rem, 2vw, 1.5rem);
-  font-weight: 500;
+  font-weight: 200;
   color: var(--ink);
   margin-bottom: 0.75rem;
 }
@@ -608,10 +609,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .level__image-text {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 0.9rem;
+  font-weight: 200;
   color: var(--gold-dark);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: 1rem;
+  text-transform: uppercase;
 }
 
 .level__image-note {
@@ -653,7 +658,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .highlight__text {
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 300;
   color: var(--ink-mid);
 }
 
@@ -741,9 +746,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .inv-card__title {
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 200;
   color: var(--ink);
   margin-bottom: 0.6rem;
 }
@@ -778,9 +783,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--font-serif);
+  font-family: var(--font);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 200;
+  letter-spacing: 0.15em;
   color: var(--gold);
 }
 

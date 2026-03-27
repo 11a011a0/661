@@ -1,45 +1,562 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Listing</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The 661 Estate — ultra-luxury newly built 5-storey home with private lift, skyline and Marina Bay Sands views, and full-floor entertainment deck. Arrange a private viewing." />
+  <title>The 661 Estate</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <h1>Luxury Real Estate Listings</h1>
-        <a href="https://api.whatsapp.com/send?phone=6583999686&text=Hello! I am interested in your luxury property!" target="_blank">WhatsApp Us</a>
-    </header>
-    <section id="hero">
-        <div class="slideshow-container">
-            <!-- Slideshow content goes here -->
+
+  <!-- ── NAV ── -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="brand" href="#top" aria-label="The 661 Estate — go to top">
+        <span class="brand__diamond" aria-hidden="true"></span>
+        <span class="brand__text">The 661 Estate</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#experience">Experience</a>
+        <a href="#levels">Levels</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#invitations">Invitations</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a class="btn btn--ghost btn--sm"
+           href="https://www.propertyguru.com.sg/listing/for-sale-ultra-luxury-5-storey-home-lift-mbs-views-entertainment-5-parking-500082466"
+           target="_blank" rel="noopener noreferrer">
+          PropertyGuru
+        </a>
+        <a class="btn btn--gold btn--sm wa-btn" href="#" target="_blank" rel="noopener noreferrer" id="waNav">
+          Arrange Viewing
+        </a>
+      </div>
+
+      <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="nav__drawer" id="navDrawer" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <a href="#overview">Overview</a>
+        <a href="#experience">Experience</a>
+        <a href="#levels">Levels</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#invitations">Invitations</a>
+      </nav>
+      <div class="nav__drawer-ctas">
+        <a class="btn btn--ghost"
+           href="https://www.propertyguru.com.sg/listing/for-sale-ultra-luxury-5-storey-home-lift-mbs-views-entertainment-5-parking-500082466"
+           target="_blank" rel="noopener noreferrer">
+          PropertyGuru Listing
+        </a>
+        <a class="btn btn--gold wa-btn" href="#" target="_blank" rel="noopener noreferrer" id="waDrawer">
+          Arrange a Private Viewing
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ── HERO ── -->
+    <section class="hero" aria-label="Hero — The 661 Estate">
+      <div class="hero__slides" id="heroSlides" aria-hidden="true">
+        <figure class="hero__slide is-active">
+          <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005228.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+               alt="Top-down aerial view of The 661 Estate" loading="eager" decoding="async" />
+        </figure>
+        <figure class="hero__slide">
+          <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159156721.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+               alt="Aerial drone view of The 661 Estate" loading="eager" decoding="async" />
+        </figure>
+        <figure class="hero__slide">
+          <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005248.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+               alt="Rooftop terrace balcony at The 661 Estate" loading="eager" decoding="async" />
+        </figure>
+      </div>
+      <div class="hero__scrim" aria-hidden="true"></div>
+
+      <div class="hero__content container">
+        <p class="kicker reveal" data-reveal>
+          <span class="kicker__dot" aria-hidden="true"></span>
+          The 661 Estate &nbsp;·&nbsp; Newly Built &nbsp;·&nbsp; Completed ~June 2025
+        </p>
+
+        <h1 class="hero__title reveal" data-reveal>
+          A residence shaped<br>by ambition.
+        </h1>
+
+        <p class="hero__sub reveal" data-reveal>
+          Ultra-luxury 5-storey home with a private lift spanning every level,
+          a full-floor entertainment deck, and sweeping Marina Bay Sands &amp;
+          city skyline views—built for scale, hosting, and an enduring presence.
+        </p>
+
+        <div class="hero__stats reveal" data-reveal>
+          <div class="stat">
+            <div class="stat__value">3,596</div>
+            <div class="stat__label">Land sqft</div>
+          </div>
+          <div class="stat__divider" aria-hidden="true"></div>
+          <div class="stat">
+            <div class="stat__value">11,469</div>
+            <div class="stat__label">Built-up sqft</div>
+          </div>
+          <div class="stat__divider" aria-hidden="true"></div>
+          <div class="stat">
+            <div class="stat__value">L1 – L5</div>
+            <div class="stat__label">Five levels</div>
+          </div>
         </div>
+
+        <div class="hero__actions reveal" data-reveal>
+          <a class="btn btn--gold btn--lg wa-btn" href="#" target="_blank" rel="noopener noreferrer" id="waHero">
+            Arrange a Private Viewing
+          </a>
+          <a class="btn btn--outline btn--lg" href="#overview">
+            Explore the Estate
+          </a>
+        </div>
+
+        <p class="hero__note reveal" data-reveal>
+          <em>Note: The sofa area in the Lobby image was virtually staged. The lift, grand piano, ceiling and lights are original.</em>
+        </p>
+      </div>
+
+      <button class="scroll-hint" type="button" data-scroll-to="#overview" aria-label="Scroll to overview">
+        <span class="scroll-hint__bar" aria-hidden="true"></span>
+        <span class="scroll-hint__label">Scroll</span>
+      </button>
     </section>
-    <section id="overview">
-        <h2>Overview</h2>
-        <!-- Overview content -->
+
+    <!-- ── OVERVIEW ── -->
+    <section id="overview" class="section section--light">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>The Property</p>
+          <h2 class="h2 reveal" data-reveal>Overview</h2>
+          <p class="lead reveal" data-reveal>
+            A masterwork of modern architecture delivered ~June 2025.
+            The 661 Estate sets a new benchmark for ultra-luxury living
+            with meticulously curated spaces across five distinct levels.
+          </p>
+        </div>
+
+        <div class="overview__grid">
+          <article class="overview__card reveal" data-reveal>
+            <div class="overview__icon" aria-hidden="true">◈</div>
+            <h3>Land Size</h3>
+            <p class="overview__value">3,596 sqft</p>
+          </article>
+          <article class="overview__card reveal" data-reveal>
+            <div class="overview__icon" aria-hidden="true">◈</div>
+            <h3>Built-up Area</h3>
+            <p class="overview__value">11,469 sqft</p>
+          </article>
+          <article class="overview__card reveal" data-reveal>
+            <div class="overview__icon" aria-hidden="true">◈</div>
+            <h3>Bedrooms</h3>
+            <p class="overview__value">5</p>
+          </article>
+          <article class="overview__card reveal" data-reveal>
+            <div class="overview__icon" aria-hidden="true">◈</div>
+            <h3>Bathrooms</h3>
+            <p class="overview__value">8</p>
+          </article>
+          <article class="overview__card reveal" data-reveal>
+            <div class="overview__icon" aria-hidden="true">◈</div>
+            <h3>Levels</h3>
+            <p class="overview__value">5 (L1 – L5)</p>
+          </article>
+          <article class="overview__card reveal" data-reveal>
+            <div class="overview__icon" aria-hidden="true">◈</div>
+            <h3>Completion</h3>
+            <p class="overview__value">~June 2025</p>
+          </article>
+        </div>
+      </div>
     </section>
-    <section id="experience">
-        <h2>Experience</h2>
-        <!-- Experience content -->
+
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>The Feeling</p>
+          <h2 class="h2 reveal" data-reveal>Experience</h2>
+          <p class="lead reveal" data-reveal>
+            From the moment you step into the grand lobby, the estate commands attention.
+            Soaring ceilings, a private lift that connects every floor,
+            and an uninterrupted visual dialogue between interior craftsmanship
+            and the Singapore skyline beyond.
+          </p>
+        </div>
+
+        <div class="experience__grid">
+          <div class="experience__copy reveal" data-reveal>
+            <p>
+              Designed for those who entertain with intention, the full-floor
+              entertainment level (L5) offers a rooftop terrace with panoramic
+              Marina Bay Sands and city skyline views—a stage for sunsets, dinners,
+              and unforgettable gatherings.
+            </p>
+            <p>
+              At ground level, the lobby lounge—anchored by a grand piano—sets a tone
+              of refined elegance. Up through the private lift, each floor reveals
+              a new chapter: from a chef's kitchen and long-table dining terrace
+              to the serene owner's suite framing the city skyline.
+            </p>
+            <p>
+              The estate is move-in ready, with EV charging, parking for up to
+              5 vehicles internally plus roadside access, and every detail resolved.
+            </p>
+          </div>
+          <div class="experience__image reveal" data-reveal>
+            <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005229.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                 alt="Living room framing lush garden views at The 661 Estate"
+                 loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
     </section>
-    <section id="levels">
-        <h2>Levels</h2>
-        <!-- Levels content -->
+
+    <!-- ── LEVELS ── -->
+    <section id="levels" class="section section--light">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>Floor by Floor</p>
+          <h2 class="h2 reveal" data-reveal>The Levels</h2>
+        </div>
+
+        <div class="levels__list">
+
+          <div class="level reveal" data-reveal>
+            <div class="level__label">L1</div>
+            <div class="level__body">
+              <h3 class="level__title">Grand Lobby &amp; Piano Lounge</h3>
+              <p class="level__desc">
+                An entrance unlike any other. The ground floor lobby commands presence
+                with soaring double-height ceilings, marble finishes, and a resident
+                grand piano. The private lift—accessed from here—connects seamlessly
+                to every upper level.
+              </p>
+            </div>
+            <div class="level__image">
+              <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005233.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                   alt="Level 1 Grand Lobby of The 661 Estate" loading="lazy" decoding="async" />
+              <p class="level__image-note">
+                <em>Sofa area was virtually staged. Lift, grand piano, ceiling and lights are original.</em>
+              </p>
+            </div>
+          </div>
+
+          <div class="level level--reverse reveal" data-reveal>
+            <div class="level__label">L2</div>
+            <div class="level__body">
+              <h3 class="level__title">Chef's Kitchen, Long-Table Dining &amp; Terrace Pond</h3>
+              <p class="level__desc">
+                The social heart of the estate. A fully equipped chef's kitchen flows into
+                a generous long-table dining room—ideal for formal dinners and private gatherings.
+                Step onto the terrace where a serene reflecting pond and lush greenery
+                blur the line between inside and garden.
+              </p>
+            </div>
+            <div class="level__image">
+              <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005243.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                   alt="Level 2 Long-Table Dining Room at The 661 Estate" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          <div class="level reveal" data-reveal>
+            <div class="level__label">L3</div>
+            <div class="level__body">
+              <h3 class="level__title">Owner's Suite with MBS &amp; Skyline Views</h3>
+              <p class="level__desc">
+                The owner's suite occupies the full third floor, featuring a private
+                walk-in wardrobe, a spa-inspired ensuite bathroom, and floor-to-ceiling
+                windows with sweeping Marina Bay Sands and city skyline views.
+                A sanctuary of calm above the city.
+              </p>
+            </div>
+            <div class="level__image level__image--placeholder">
+              <div class="level__image-text">Owner's Suite · L3</div>
+            </div>
+          </div>
+
+          <div class="level level--reverse reveal" data-reveal>
+            <div class="level__label">L4</div>
+            <div class="level__body">
+              <h3 class="level__title">Junior Suites &amp; Guest Rooms</h3>
+              <p class="level__desc">
+                Four generously proportioned suites and guest rooms, each with ensuite
+                bathrooms and custom built-ins. Designed for family, guests, or live-in
+                staff—every room reflects the same level of craft found across the estate.
+              </p>
+            </div>
+            <div class="level__image level__image--placeholder">
+              <div class="level__image-text">Junior Suites · L4</div>
+            </div>
+          </div>
+
+          <div class="level reveal" data-reveal>
+            <div class="level__label">L5</div>
+            <div class="level__body">
+              <h3 class="level__title">Full-Floor Entertainment Deck &amp; Rooftop Terrace</h3>
+              <p class="level__desc">
+                The crown of the estate. An entire level dedicated to entertainment—
+                open-air rooftop terrace with panoramic MBS and skyline views,
+                wet and dry kitchen, and lounge areas that transform effortlessly
+                from intimate dinners to large gatherings under the stars.
+              </p>
+            </div>
+            <div class="level__image">
+              <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005248.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                   alt="Rooftop Terrace at Level 5 of The 661 Estate" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
-    <section id="highlights">
-        <h2>Highlights</h2>
-        <!-- Highlights content -->
+
+    <!-- ── HIGHLIGHTS ── -->
+    <section id="highlights" class="section">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>Key Features</p>
+          <h2 class="h2 reveal" data-reveal>Highlights</h2>
+        </div>
+
+        <ul class="highlights__grid">
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">5 Bedrooms</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">8 Bathrooms</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">Private Lift (L1–L5)</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">5 Internal Parking Bays + Roadside</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">EV Charging</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">Full-Floor Entertainment Level (L5)</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">MBS &amp; City Skyline Views</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">Newly Built — Move-in Ready</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">Near Transit, Schools &amp; Amenities</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">Grand Piano Lobby</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">Terrace Reflecting Pond (L2)</span>
+          </li>
+          <li class="highlight reveal" data-reveal>
+            <span class="highlight__icon" aria-hidden="true">◈</span>
+            <span class="highlight__text">Owner's Suite with Ensuite &amp; Views</span>
+          </li>
+        </ul>
+
+        <div class="highlights__cta reveal" data-reveal>
+          <a class="btn btn--gold btn--lg wa-btn" href="#" target="_blank" rel="noopener noreferrer" id="waHighlights">
+            Arrange a Private Viewing
+          </a>
+          <a class="btn btn--ghost btn--lg"
+             href="https://www.propertyguru.com.sg/listing/for-sale-ultra-luxury-5-storey-home-lift-mbs-views-entertainment-5-parking-500082466"
+             target="_blank" rel="noopener noreferrer">
+            View on PropertyGuru
+          </a>
+        </div>
+      </div>
     </section>
-    <section id="location">
-        <h2>Location</h2>
-        <!-- Location content -->
+
+    <!-- ── GALLERY ── -->
+    <section id="gallery" class="section section--light">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>The Estate in Images</p>
+          <h2 class="h2 reveal" data-reveal>Gallery</h2>
+        </div>
+
+        <div class="gallery__grid">
+          <button class="gallery__item reveal" data-reveal
+                  data-src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005228.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                  data-caption="Top-down aerial view of The 661 Estate"
+                  aria-label="Open image: Top-down aerial view">
+            <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005228.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                 alt="Top-down aerial view of The 661 Estate" loading="lazy" decoding="async" />
+            <span class="gallery__overlay" aria-hidden="true">
+              <span class="gallery__zoom">&#x2315;</span>
+            </span>
+          </button>
+
+          <button class="gallery__item reveal" data-reveal
+                  data-src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159156721.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                  data-caption="Aerial drone view of The 661 Estate"
+                  aria-label="Open image: Aerial drone view">
+            <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159156721.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                 alt="Aerial drone view of The 661 Estate" loading="lazy" decoding="async" />
+            <span class="gallery__overlay" aria-hidden="true">
+              <span class="gallery__zoom">&#x2315;</span>
+            </span>
+          </button>
+
+          <button class="gallery__item reveal" data-reveal
+                  data-src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005248.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                  data-caption="Rooftop Terrace &amp; Balcony — Level 5"
+                  aria-label="Open image: Rooftop Terrace">
+            <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005248.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                 alt="Rooftop Terrace at The 661 Estate" loading="lazy" decoding="async" />
+            <span class="gallery__overlay" aria-hidden="true">
+              <span class="gallery__zoom">&#x2315;</span>
+            </span>
+          </button>
+
+          <button class="gallery__item reveal" data-reveal
+                  data-src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005233.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                  data-caption="Level 1 — Grand Lobby &amp; Piano Lounge"
+                  aria-label="Open image: Level 1 Lobby">
+            <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005233.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                 alt="Level 1 Grand Lobby at The 661 Estate" loading="lazy" decoding="async" />
+            <span class="gallery__overlay" aria-hidden="true">
+              <span class="gallery__zoom">&#x2315;</span>
+            </span>
+          </button>
+
+          <button class="gallery__item reveal" data-reveal
+                  data-src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005243.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                  data-caption="Level 2 — Long-Table Dining Room"
+                  aria-label="Open image: Level 2 Dining">
+            <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005243.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                 alt="Level 2 Long-Table Dining at The 661 Estate" loading="lazy" decoding="async" />
+            <span class="gallery__overlay" aria-hidden="true">
+              <span class="gallery__zoom">&#x2315;</span>
+            </span>
+          </button>
+
+          <button class="gallery__item reveal" data-reveal
+                  data-src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005229.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                  data-caption="Living Room framing lush garden views"
+                  aria-label="Open image: Living Room">
+            <img src="https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005229.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg"
+                 alt="Living Room at The 661 Estate framing garden views" loading="lazy" decoding="async" />
+            <span class="gallery__overlay" aria-hidden="true">
+              <span class="gallery__zoom">&#x2315;</span>
+            </span>
+          </button>
+        </div>
+      </div>
     </section>
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <!-- Gallery content -->
+
+    <!-- ── INVITATIONS ── -->
+    <section id="invitations" class="section">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow reveal" data-reveal>Private Events</p>
+          <h2 class="h2 reveal" data-reveal>Invitations</h2>
+          <p class="lead reveal" data-reveal>
+            The 661 Estate is built for hosting. In the future, this page will offer
+            private event invitations—BBQ evenings, rooftop dinners, poker nights—
+            with RSVP flows and curated guest experiences.
+          </p>
+        </div>
+
+        <div class="invitations__grid">
+          <article class="inv-card reveal" data-reveal>
+            <div class="inv-card__icon" aria-hidden="true">◈</div>
+            <h3 class="inv-card__title">Event Mode</h3>
+            <p>
+              The site can switch into "Invitation Mode" with event title, date &amp; time,
+              dress code, parking notes, and a one-tap RSVP—tailored to each occasion.
+            </p>
+          </article>
+          <article class="inv-card reveal" data-reveal>
+            <div class="inv-card__icon" aria-hidden="true">◈</div>
+            <h3 class="inv-card__title">Private Sharing</h3>
+            <p>
+              Unique invite links or a simple passcode gate ensure only your
+              invited guests can view event details.
+            </p>
+          </article>
+          <article class="inv-card reveal" data-reveal>
+            <div class="inv-card__icon" aria-hidden="true">◈</div>
+            <h3 class="inv-card__title">The Space</h3>
+            <p>
+              From intimate owner-suite dinners to full-floor rooftop gatherings for 50+,
+              the estate adapts seamlessly. Five levels, one vision.
+            </p>
+          </article>
+        </div>
+
+        <div class="invitations__cta reveal" data-reveal>
+          <a class="btn btn--gold btn--lg wa-btn" href="#" target="_blank" rel="noopener noreferrer" id="waInvitations">
+            Reach Out on WhatsApp
+          </a>
+        </div>
+      </div>
     </section>
-    <script src="app.js"></script>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="brand__diamond" aria-hidden="true"></span>
+        <span>The 661 Estate</span>
+      </div>
+      <p class="footer__copy">
+        &copy; <span id="footerYear"></span> The 661 Estate &nbsp;·&nbsp;
+        <a href="https://www.propertyguru.com.sg/listing/for-sale-ultra-luxury-5-storey-home-lift-mbs-views-entertainment-5-parking-500082466"
+           target="_blank" rel="noopener noreferrer">PropertyGuru Listing</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+    <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox__frame">
+      <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+      <p class="lightbox__cap" id="lightboxCap"></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

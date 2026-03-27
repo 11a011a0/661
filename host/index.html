@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The 661 Estate — Create a private event invitation for your guests." />
+  <title>Create Invitation — The 661 Estate</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;1,200&family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #c9a84c;
+      --gold-light: #e2c47a;
+      --gold-dark:  #9e7d2e;
+      --gold-faint: #f7f1e3;
+      --white:      #ffffff;
+      --off-white:  #fafaf8;
+      --ink:        #1a1a1a;
+      --ink-mid:    #4a4a4a;
+      --ink-soft:   #7a7a7a;
+      --border:     rgba(201,168,76,0.22);
+      --font:       'Montserrat', system-ui, -apple-system, sans-serif;
+      --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--off-white);
+      color: var(--ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(250,250,248,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; padding-inline: clamp(1.25rem,5vw,3rem);
+      max-width: 1200px; margin-inline: auto;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-size: 1rem; font-weight: 200; letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+    .brand__diamond {
+      width: 10px; height: 10px;
+      background: var(--gold); transform: rotate(45deg); flex-shrink: 0;
+    }
+    .nav__back {
+      font-size: 0.68rem; font-weight: 300; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--ink-soft);
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav__back:hover { color: var(--gold); }
+    .nav__back-arrow { font-size: 0.85rem; }
+
+    /* ── PAGE LAYOUT ── */
+    .page {
+      max-width: 640px; margin-inline: auto;
+      padding: clamp(2rem,6vw,4rem) clamp(1.25rem,5vw,3rem) 5rem;
+    }
+
+    /* ── HEADER ── */
+    .page-head { text-align: center; margin-bottom: clamp(2rem,5vw,3.5rem); }
+    .eyebrow {
+      font-size: 0.62rem; font-weight: 300; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 0.6rem;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 200; line-height: 1.15; color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+    .page-sub {
+      font-size: 0.82rem; color: var(--ink-soft);
+      font-weight: 300; max-width: 42ch; margin-inline: auto;
+    }
+
+    /* ── FORM CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: clamp(1.5rem,4vw,2.5rem);
+    }
+
+    .form-group {
+      display: flex; flex-direction: column; gap: 0.45rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-group:last-of-type { margin-bottom: 2rem; }
+
+    label {
+      font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-mid);
+    }
+
+    .field-note {
+      font-size: 0.65rem; color: var(--ink-soft); font-weight: 300;
+    }
+
+    input[type="text"],
+    input[type="datetime-local"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--off-white);
+      font-family: var(--font);
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      -webkit-appearance: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+    }
+    input::placeholder, textarea::placeholder { color: rgba(74,74,74,0.4); }
+
+    textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+    .char-row {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .char-count {
+      font-size: 0.64rem; color: var(--ink-soft); font-weight: 300; letter-spacing: 0.05em;
+    }
+    .char-count.is-warn { color: #e08c3a; }
+    .char-count.is-over { color: #cc3333; }
+
+    .field-hint {
+      font-size: 0.65rem; color: var(--ink-soft); font-weight: 300; font-style: italic;
+    }
+
+    /* Phone prefix */
+    .phone-row { display: flex; gap: 0.5rem; }
+    .phone-prefix {
+      padding: 0.75rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--off-white);
+      font-family: var(--font); font-size: 0.88rem; font-weight: 300;
+      color: var(--ink-mid); white-space: nowrap; flex-shrink: 0;
+    }
+    .phone-row input { flex: 1; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      width: 100%; padding: 0.95rem 2rem;
+      background: var(--gold); color: var(--white);
+      font-size: 0.72rem; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+      transform: translateY(-1px);
+    }
+    .btn-primary:disabled {
+      opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none;
+    }
+
+    /* ── RESULT BOX ── */
+    .result {
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--gold-faint);
+      padding: 1.5rem;
+      display: none;
+    }
+    .result.is-visible { display: block; }
+
+    .result__label {
+      font-size: 0.6rem; font-weight: 400; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .result__link-wrap {
+      display: flex; gap: 0.5rem; align-items: stretch;
+    }
+    .result__link {
+      flex: 1; padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border); border-radius: 2px;
+      background: var(--white); font-size: 0.78rem; font-weight: 300;
+      color: var(--ink-mid); word-break: break-all;
+      line-height: 1.5;
+    }
+    .btn-copy {
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--gold); border-radius: 2px;
+      background: transparent;
+      font-size: 0.68rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); white-space: nowrap; flex-shrink: 0;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn-copy:hover, .btn-copy.is-copied {
+      background: var(--gold); color: var(--white);
+    }
+
+    .result__note {
+      margin-top: 0.75rem;
+      font-size: 0.68rem; color: var(--ink-soft); font-weight: 300; font-style: italic;
+    }
+
+    /* Preview card */
+    .preview {
+      margin-top: 1.5rem;
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 1.5rem; background: var(--white); display: none;
+    }
+    .preview.is-visible { display: block; }
+    .preview__label {
+      font-size: 0.6rem; font-weight: 400; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1rem;
+    }
+    .preview__title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.4rem; font-weight: 200; color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .preview__desc {
+      font-size: 0.82rem; color: var(--ink-mid); font-weight: 300; margin-bottom: 0.75rem;
+    }
+    .preview__meta {
+      font-size: 0.68rem; letter-spacing: 0.08em; color: var(--gold);
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--border); padding: 1.5rem;
+      text-align: center;
+    }
+    .footer p {
+      font-size: 0.65rem; color: var(--ink-soft); font-weight: 300; letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 400px) {
+      .result__link-wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="brand" href="../">
+        <span class="brand__diamond" aria-hidden="true"></span>
+        <span>661</span>
+      </a>
+      <a class="nav__back" href="../">
+        <span class="nav__back-arrow" aria-hidden="true">&#8592;</span>
+        Home
+      </a>
+    </div>
+  </header>
+
+  <main class="page" role="main">
+    <div class="page-head">
+      <span class="eyebrow">Owner Portal</span>
+      <h1 class="page-title">Create an Invitation</h1>
+      <p class="page-sub">
+        Fill in the event details below to generate a shareable invite link
+        for your guests at The 661 Estate.
+      </p>
+    </div>
+
+    <div class="card">
+      <form id="hostForm" novalidate>
+
+        <!-- Title -->
+        <div class="form-group">
+          <label for="eventTitle">Event Title</label>
+          <input type="text" id="eventTitle" name="eventTitle"
+                 placeholder="e.g. Rooftop Dinner, Poker Night, Garden BBQ"
+                 maxlength="80" autocomplete="off" required />
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <div class="char-row">
+            <label for="eventDesc">Description</label>
+            <span class="char-count" id="charCount">0 / 60</span>
+          </div>
+          <textarea id="eventDesc" name="eventDesc"
+                    placeholder="A short description of the event (60 characters max)"
+                    maxlength="60" rows="3" required></textarea>
+          <p class="field-hint">Keep it punchy — your guests will see this on the invite.</p>
+        </div>
+
+        <!-- Date & Time -->
+        <div class="form-group">
+          <label for="eventDate">Date &amp; Time</label>
+          <input type="datetime-local" id="eventDate" name="eventDate" required />
+        </div>
+
+        <!-- Mobile -->
+        <div class="form-group">
+          <label for="eventPhone">Your WhatsApp Number</label>
+          <div class="phone-row">
+            <span class="phone-prefix">+65</span>
+            <input type="tel" id="eventPhone" name="eventPhone"
+                   placeholder="9123 4567"
+                   maxlength="12" autocomplete="tel" required />
+          </div>
+          <p class="field-note">Guests will send their RSVP directly to you on WhatsApp.</p>
+        </div>
+
+        <button type="submit" class="btn-primary" id="generateBtn">
+          Generate Invite Link
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4"/>
+            <path d="M14 4h6v6M20 4L9 15"/>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Result -->
+      <div class="result" id="resultBox">
+        <p class="result__label">Your Invite Link</p>
+        <div class="result__link-wrap">
+          <span class="result__link" id="resultLink"></span>
+          <button class="btn-copy" id="copyBtn" type="button">Copy</button>
+        </div>
+        <p class="result__note">
+          Share this link with your guests. They will see the event details
+          along with a map, calendar button, and RSVP via WhatsApp.
+        </p>
+      </div>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="preview" id="previewBox">
+      <p class="preview__label">Preview</p>
+      <p class="preview__title" id="pvTitle">—</p>
+      <p class="preview__desc" id="pvDesc"></p>
+      <div class="preview__meta">
+        <span id="pvDate"></span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 The 661 Estate</p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── CHAR COUNTER ── */
+    var descEl     = document.getElementById('eventDesc');
+    var charCount  = document.getElementById('charCount');
+    var MAX_CHARS  = 60;
+
+    function updateCount() {
+      var n = descEl.value.length;
+      charCount.textContent = n + ' / ' + MAX_CHARS;
+      charCount.className   = 'char-count' +
+        (n > MAX_CHARS      ? ' is-over' :
+         n > MAX_CHARS - 10 ? ' is-warn' : '');
+    }
+
+    descEl.addEventListener('input', updateCount);
+    updateCount();
+
+    /* ── LIVE PREVIEW ── */
+    var titleEl   = document.getElementById('eventTitle');
+    var dateEl    = document.getElementById('eventDate');
+    var previewBox = document.getElementById('previewBox');
+    var pvTitle   = document.getElementById('pvTitle');
+    var pvDesc    = document.getElementById('pvDesc');
+    var pvDate    = document.getElementById('pvDate');
+
+    function updatePreview() {
+      var t = titleEl.value.trim();
+      var d = descEl.value.trim();
+      var dt = dateEl.value;
+
+      if (!t && !d && !dt) {
+        previewBox.classList.remove('is-visible');
+        return;
+      }
+
+      previewBox.classList.add('is-visible');
+      pvTitle.textContent = t || '—';
+      pvDesc.textContent  = d;
+      if (dt) {
+        var date = new Date(dt);
+        pvDate.textContent = date.toLocaleString('en-SG', {
+          weekday: 'long', year: 'numeric', month: 'long',
+          day: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+      } else {
+        pvDate.textContent = '';
+      }
+    }
+
+    [titleEl, descEl, dateEl].forEach(function (el) {
+      el.addEventListener('input', updatePreview);
+    });
+
+    /* ── SET DEFAULT DATETIME (next weekend at 7 pm) ── */
+    (function setDefaultDate() {
+      var now = new Date();
+      var day = now.getDay(); // 0=Sun, 6=Sat
+      var daysUntilSat = (6 - day + 7) % 7 || 7;
+      var sat = new Date(now);
+      sat.setDate(now.getDate() + daysUntilSat);
+      sat.setHours(19, 0, 0, 0);
+      // Format as datetime-local value
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      dateEl.value = sat.getFullYear() + '-' +
+        pad(sat.getMonth() + 1) + '-' +
+        pad(sat.getDate())      + 'T' +
+        pad(sat.getHours())     + ':' +
+        pad(sat.getMinutes());
+    }());
+
+    /* ── FORM SUBMIT ── */
+    var form      = document.getElementById('hostForm');
+    var resultBox = document.getElementById('resultBox');
+    var resultLink = document.getElementById('resultLink');
+    var copyBtn   = document.getElementById('copyBtn');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var title = titleEl.value.trim();
+      var desc  = descEl.value.trim();
+      var dt    = dateEl.value;
+      var phone = document.getElementById('eventPhone').value.trim().replace(/\D/g, '');
+
+      if (!title) { titleEl.focus(); return; }
+      if (!desc)  { descEl.focus();  return; }
+      if (!dt)    { dateEl.focus();  return; }
+      if (!phone) { document.getElementById('eventPhone').focus(); return; }
+
+      // Encode payload as base64 JSON
+      var payload = {
+        t: title,
+        d: desc,
+        dt: dt,
+        p: '65' + phone   // prepend SG country code
+      };
+
+      var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+      var url = window.location.origin + '/invite/?d=' + encoded;
+
+      resultLink.textContent = url;
+      resultBox.classList.add('is-visible');
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    /* ── COPY BUTTON ── */
+    copyBtn.addEventListener('click', function () {
+      var text = resultLink.textContent;
+      if (!text) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          copyBtn.textContent = 'Copied!';
+          copyBtn.classList.add('is-copied');
+          setTimeout(function () {
+            copyBtn.textContent = 'Copy';
+            copyBtn.classList.remove('is-copied');
+          }, 2000);
+        }).catch(function () { fallbackCopy(text); });
+      } else {
+        fallbackCopy(text);
+      }
+    });
+
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      copyBtn.textContent = 'Copied!';
+      copyBtn.classList.add('is-copied');
+      setTimeout(function () {
+        copyBtn.textContent = 'Copy';
+        copyBtn.classList.remove('is-copied');
+      }, 2000);
+    }
+
+  }());
+  </script>
+</body>
+</html>

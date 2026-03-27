@@ -310,7 +310,7 @@
 
       <!-- Google Maps -->
       <a class="btn btn-maps" id="btnMaps"
-         href="https://maps.google.com/?q=661+Eunos+Crescent+Singapore"
+         href="https://maps.google.com/?q=661+Changi+Road+Singapore+419952"
          target="_blank" rel="noopener noreferrer">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -420,7 +420,7 @@
       '&text=' + encodeURIComponent(payload.t) +
       '&dates=' + toGCalDate(eventDate) + '/' + toGCalDate(endDate) +
       '&details=' + encodeURIComponent((payload.d || '') + '\n\nHosted at The 661 Estate, Singapore.') +
-      '&location=' + encodeURIComponent('The 661 Estate, 661 Eunos Crescent, Singapore') +
+      '&location=' + encodeURIComponent('The 661 Estate, 661 Changi Road, Singapore 419952') +
       '&sf=true&output=xml';
     document.getElementById('btnGCal').setAttribute('href', gcalUrl);
 
@@ -449,7 +449,7 @@
       'DTEND:'   + toICSDate(endDate),
       'SUMMARY:' + (payload.t || '').replace(/,/g, '\\,'),
       'DESCRIPTION:' + ((payload.d || '') + ' — The 661 Estate, Singapore').replace(/,/g, '\\,').replace(/\n/g, '\\n'),
-      'LOCATION:The 661 Estate\\, 661 Eunos Crescent\\, Singapore',
+      'LOCATION:The 661 Estate\\, 661 Changi Road\\, Singapore 419952',
       'STATUS:CONFIRMED',
       'TRANSP:OPAQUE',
       'END:VEVENT',

@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="You're invited — The 661 Estate" />
+  <title>You're Invited — The 661 Estate</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #c9a84c;
+      --gold-light: #e2c47a;
+      --gold-dark:  #9e7d2e;
+      --gold-faint: #f7f1e3;
+      --white:      #ffffff;
+      --off-white:  #fafaf8;
+      --ink:        #1a1a1a;
+      --ink-mid:    #4a4a4a;
+      --ink-soft:   #7a7a7a;
+      --border:     rgba(201,168,76,0.22);
+      --font:       'Montserrat', system-ui, -apple-system, sans-serif;
+      --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: #0d0d0d;
+      color: var(--white);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── BACKGROUND ── */
+    .bg-image {
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url('https://sg1-cdn.pgimgs.com/listing/500082466/UPHO.159005248.V800/Ultra-Luxury-5-Storey-Home-lift-Mbs-Views-Entertainment-5-Parking-Eunos-Geylang-Paya-Lebar-Singapore.jpg');
+      background-size: cover; background-position: center;
+      filter: brightness(0.22) saturate(0.6);
+    }
+    .bg-scrim {
+      position: fixed; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(13,13,13,0.5) 0%,
+        rgba(13,13,13,0.2) 40%,
+        rgba(13,13,13,0.85) 100%
+      );
+    }
+
+    /* ── ERROR STATE ── */
+    #errorState {
+      position: fixed; inset: 0; z-index: 100;
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
+      background: #0d0d0d;
+    }
+    #errorState.is-visible { display: flex; }
+    .error-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+    .error-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.6rem; font-weight: 200; color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .error-msg { font-size: 0.82rem; color: rgba(255,255,255,0.5); font-weight: 300; }
+
+    /* ── CONTENT ── */
+    .page {
+      position: relative; z-index: 2;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-start;
+      padding: clamp(3rem,8vw,6rem) clamp(1.25rem,5vw,3rem) 5rem;
+    }
+
+    /* Estate brand */
+    .brand {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-size: 0.82rem; font-weight: 200; letter-spacing: 0.25em;
+      color: var(--gold); text-transform: uppercase;
+      margin-bottom: clamp(2.5rem,6vw,4rem);
+      opacity: 0; animation: fadeIn 1s var(--ease-out) 0.2s forwards;
+    }
+    .brand__diamond {
+      width: 8px; height: 8px; background: var(--gold);
+      transform: rotate(45deg); flex-shrink: 0;
+    }
+
+    /* ── INVITE CARD ── */
+    .invite-card {
+      width: 100%; max-width: 520px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow: hidden;
+      opacity: 0; animation: slideUp 1s var(--ease-out) 0.5s forwards;
+    }
+
+    /* Card top accent */
+    .card__accent {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .card__body { padding: clamp(1.75rem,4vw,2.5rem); }
+
+    /* Kicker */
+    .card__kicker {
+      font-size: 0.6rem; font-weight: 300; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold-light);
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .card__kicker::before {
+      content: ''; display: block;
+      width: 6px; height: 6px; background: var(--gold-light);
+      border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* Title */
+    .card__title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.75rem, 5vw, 2.8rem);
+      font-weight: 200; line-height: 1.15; color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Description */
+    .card__desc {
+      font-size: clamp(0.82rem, 1.5vw, 0.92rem);
+      color: rgba(255,255,255,0.65); font-weight: 300; line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Divider */
+    .card__divider {
+      width: 100%; height: 1px;
+      background: rgba(201,168,76,0.15);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Date meta */
+    .card__meta {
+      display: flex; flex-direction: column; gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .meta-row {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+    .meta-icon {
+      width: 18px; height: 18px; flex-shrink: 0;
+      color: var(--gold); opacity: 0.85;
+      margin-top: 1px;
+    }
+    .meta-label {
+      font-size: 0.6rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      font-weight: 300; margin-bottom: 0.1rem;
+    }
+    .meta-value {
+      font-size: 0.88rem; color: rgba(255,255,255,0.82);
+      font-weight: 300;
+    }
+
+    /* ── ACTION BUTTONS ── */
+    .actions {
+      width: 100%; max-width: 520px;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      margin-top: 1.25rem;
+      opacity: 0; animation: slideUp 1s var(--ease-out) 0.9s forwards;
+    }
+
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.65rem;
+      padding: 0.9rem 1.5rem;
+      border-radius: 2px;
+      font-size: 0.72rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.2s, border-color 0.3s;
+    }
+    .btn svg { flex-shrink: 0; }
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-rsvp {
+      background: #25D366; color: var(--white); border: 1px solid #25D366;
+    }
+    .btn-rsvp:hover { background: #1da853; border-color: #1da853; box-shadow: 0 4px 16px rgba(37,211,102,0.3); }
+
+    .btn-maps {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-maps:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+
+    .btn-gcal {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-gcal:hover { border-color: #4285F4; background: rgba(66,133,244,0.08); }
+
+    .btn-acal {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-acal:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+
+    /* ── FOOTER BRAND ── */
+    .footer-brand {
+      margin-top: clamp(2.5rem,6vw,4rem);
+      text-align: center;
+      opacity: 0; animation: fadeIn 1s var(--ease-out) 1.3s forwards;
+    }
+    .footer-brand p {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.2); font-weight: 300;
+    }
+    .footer-brand a {
+      color: rgba(201,168,76,0.5); transition: color 0.2s;
+    }
+    .footer-brand a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-image" aria-hidden="true"></div>
+  <div class="bg-scrim" aria-hidden="true"></div>
+
+  <!-- Error state (shown when no valid data) -->
+  <div id="errorState" role="alert" aria-live="polite">
+    <div class="error-icon" aria-hidden="true">◈</div>
+    <h1 class="error-title">Invalid Invitation</h1>
+    <p class="error-msg">This invite link is missing or has expired.<br>Please request a new link from the host.</p>
+  </div>
+
+  <main class="page" id="invitePage" role="main" style="display:none">
+
+    <a class="brand" href="../" aria-label="The 661 Estate — return home">
+      <span class="brand__diamond" aria-hidden="true"></span>
+      <span>The 661 Estate</span>
+    </a>
+
+    <article class="invite-card" id="inviteCard">
+      <div class="card__accent" aria-hidden="true"></div>
+      <div class="card__body">
+        <p class="card__kicker">You are invited</p>
+        <h1 class="card__title" id="cardTitle">—</h1>
+        <p class="card__desc" id="cardDesc"></p>
+        <div class="card__divider" aria-hidden="true"></div>
+        <div class="card__meta">
+          <!-- Date -->
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+            <div>
+              <p class="meta-label">Date &amp; Time</p>
+              <p class="meta-value" id="cardDate">—</p>
+            </div>
+          </div>
+          <!-- Location -->
+          <div class="meta-row">
+            <svg class="meta-icon" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            <div>
+              <p class="meta-label">Venue</p>
+              <p class="meta-value">The 661 Estate, Singapore</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Action Buttons -->
+    <div class="actions" id="actionsGroup" role="group" aria-label="Event actions">
+
+      <!-- RSVP via WhatsApp -->
+      <a class="btn btn-rsvp" id="btnRsvp" href="#" target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.543 5.871L.057 23.686a.5.5 0 00.614.634l5.985-1.578A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.917a9.893 9.893 0 01-5.04-1.377l-.361-.214-3.742.987 1.003-3.658-.235-.374A9.862 9.862 0 012.083 12C2.083 6.514 6.514 2.083 12 2.083S21.917 6.514 21.917 12 17.486 21.917 12 21.917z"/>
+        </svg>
+        RSVP via WhatsApp
+      </a>
+
+      <!-- Google Maps -->
+      <a class="btn btn-maps" id="btnMaps"
+         href="https://maps.google.com/?q=661+Eunos+Crescent+Singapore"
+         target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        View on Google Maps
+      </a>
+
+      <!-- Google Calendar -->
+      <a class="btn btn-gcal" id="btnGCal" href="#" target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <path d="M16 2v4M8 2v4M3 10h18"/>
+          <path d="M8 14h2v2H8z"/>
+        </svg>
+        Add to Google Calendar
+      </a>
+
+      <!-- Apple Calendar -->
+      <a class="btn btn-acal" id="btnACal" href="#" download="invite.ics">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <path d="M16 2v4M8 2v4M3 10h18"/>
+          <circle cx="12" cy="16" r="1"/>
+        </svg>
+        Add to Apple Calendar
+      </a>
+    </div>
+
+    <div class="footer-brand">
+      <p>
+        Hosted at <a href="../specifications/">The 661 Estate</a>
+        &nbsp;·&nbsp; Singapore
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── PARSE URL DATA ── */
+    function getPayload() {
+      var search = window.location.search;
+      var params = new URLSearchParams(search);
+      var raw = params.get('d');
+      if (!raw) return null;
+      try {
+        var decoded = decodeURIComponent(escape(atob(raw)));
+        return JSON.parse(decoded);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    var payload = getPayload();
+
+    if (!payload || !payload.t || !payload.dt) {
+      document.getElementById('errorState').classList.add('is-visible');
+      return;
+    }
+
+    /* ── SHOW PAGE ── */
+    document.getElementById('invitePage').style.display = 'flex';
+
+    /* ── POPULATE CARD ── */
+    document.getElementById('cardTitle').textContent = payload.t;
+    document.getElementById('cardDesc').textContent  = payload.d || '';
+
+    var eventDate = new Date(payload.dt);
+    var dateStr   = eventDate.toLocaleString('en-SG', {
+      weekday: 'long', year: 'numeric', month: 'long',
+      day: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
+    document.getElementById('cardDate').textContent = dateStr;
+
+    /* ── PAGE TITLE ── */
+    document.title = payload.t + ' — The 661 Estate';
+
+    /* ── WHATSAPP RSVP ── */
+    var phone = payload.p || '6583999686';
+    // Sanitize: digits only
+    phone = phone.replace(/\D/g, '');
+
+    var waMsg = 'Hi! I received your invite to "' + payload.t + '" at The 661 Estate on ' +
+                dateStr + '. I\u2019d love to attend — please count me in! 🎉';
+    var waUrl = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(waMsg);
+    document.getElementById('btnRsvp').setAttribute('href', waUrl);
+
+    /* ── GOOGLE CALENDAR ── */
+    function toGCalDate(d) {
+      // Format: YYYYMMDDTHHmmss (local)
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      return d.getFullYear() +
+        pad(d.getMonth() + 1) +
+        pad(d.getDate()) + 'T' +
+        pad(d.getHours()) +
+        pad(d.getMinutes()) + '00';
+    }
+
+    var endDate = new Date(eventDate.getTime() + 3 * 60 * 60 * 1000); // +3 hours
+    var gcalUrl = 'https://www.google.com/calendar/render?action=TEMPLATE' +
+      '&text=' + encodeURIComponent(payload.t) +
+      '&dates=' + toGCalDate(eventDate) + '/' + toGCalDate(endDate) +
+      '&details=' + encodeURIComponent((payload.d || '') + '\n\nHosted at The 661 Estate, Singapore.') +
+      '&location=' + encodeURIComponent('The 661 Estate, 661 Eunos Crescent, Singapore') +
+      '&sf=true&output=xml';
+    document.getElementById('btnGCal').setAttribute('href', gcalUrl);
+
+    /* ── APPLE CALENDAR (.ics) ── */
+    function toICSDate(d) {
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      // Convert to UTC for ICS
+      return d.getUTCFullYear() +
+        pad(d.getUTCMonth() + 1) +
+        pad(d.getUTCDate()) + 'T' +
+        pad(d.getUTCHours()) +
+        pad(d.getUTCMinutes()) + '00Z';
+    }
+
+    var uid = 'event-' + Date.now() + '@661estate';
+    var icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//The 661 Estate//EN',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:' + uid,
+      'DTSTAMP:' + toICSDate(new Date()),
+      'DTSTART:' + toICSDate(eventDate),
+      'DTEND:'   + toICSDate(endDate),
+      'SUMMARY:' + (payload.t || '').replace(/,/g, '\\,'),
+      'DESCRIPTION:' + ((payload.d || '') + ' — The 661 Estate, Singapore').replace(/,/g, '\\,').replace(/\n/g, '\\n'),
+      'LOCATION:The 661 Estate\\, 661 Eunos Crescent\\, Singapore',
+      'STATUS:CONFIRMED',
+      'TRANSP:OPAQUE',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    var icsBlob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    var icsUrl  = URL.createObjectURL(icsBlob);
+    var acalBtn = document.getElementById('btnACal');
+    acalBtn.setAttribute('href', icsUrl);
+    acalBtn.setAttribute('download', (payload.t || 'invite').replace(/[^a-z0-9]/gi, '_') + '.ics');
+
+  }());
+  </script>
+</body>
+</html>

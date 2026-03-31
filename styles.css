@@ -202,7 +202,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .nav.is-scrolled .nav__links a { color: var(--ink-mid); }
 .nav:not(.is-scrolled) .nav__links a { color: rgba(255,255,255,0.85); }
 .nav__links a:hover { color: var(--gold); }
-.nav:not(.is-scrolled) .nav__drawer { border-top-color: transparent; }
+.nav__drawer:not(.is-open) { border-top-color: transparent; }
 
 .nav__actions {
   display: flex;

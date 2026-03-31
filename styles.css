@@ -338,7 +338,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   position: relative;
   z-index: 2;
   padding-bottom: clamp(3rem, 8vh, 6rem);
-  padding-top: var(--nav-h);
+  padding-top: calc(var(--nav-h) + env(safe-area-inset-top));
   display: flex;
   flex-direction: column;
   gap: 1.5rem;

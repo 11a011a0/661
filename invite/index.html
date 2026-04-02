@@ -24,7 +24,7 @@
       --ink-mid:    #4a4a4a;
       --ink-soft:   #7a7a7a;
       --border:     rgba(201,168,76,0.22);
-      --font:       'Montserrat', system-ui, -apple-system, sans-serif;
+      --font:       'Montserrat', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
       --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -233,6 +233,35 @@
     }
     .footer-brand a:hover { color: var(--gold); }
 
+    /* ── LANGUAGE TOGGLE ── */
+    .lang-toggle {
+      position: fixed;
+      top: clamp(1rem, 3vw, 1.5rem);
+      right: clamp(1rem, 3vw, 1.5rem);
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.8rem;
+      padding: 0.32rem 0.58rem;
+      font-family: var(--font);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 2px;
+      cursor: pointer;
+      background: transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .lang-toggle:hover {
+      color: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp {
@@ -243,14 +272,16 @@
 </head>
 <body>
 
+  <button class="lang-toggle" aria-label="切换中文" lang="zh-Hans">中文</button>
+
   <div class="bg-image" aria-hidden="true"></div>
   <div class="bg-scrim" aria-hidden="true"></div>
 
   <!-- Error state (shown when no valid data) -->
   <div id="errorState" role="alert" aria-live="polite">
     <div class="error-icon" aria-hidden="true">◈</div>
-    <h1 class="error-title">Invalid Invitation</h1>
-    <p class="error-msg">This invite link is missing or has expired.<br>Please request a new link from the host.</p>
+    <h1 class="error-title" data-i18n="error-title">Invalid Invitation</h1>
+    <p class="error-msg" data-i18n-html="error-msg">This invite link is missing or has expired.<br>Please request a new link from the host.</p>
   </div>
 
   <main class="page" id="invitePage" role="main" style="display:none">
@@ -263,7 +294,7 @@
     <article class="invite-card" id="inviteCard">
       <div class="card__accent" aria-hidden="true"></div>
       <div class="card__body">
-        <p class="card__kicker">You are invited</p>
+        <p class="card__kicker" data-i18n="kicker-invited">You are invited</p>
         <h1 class="card__title" id="cardTitle">—</h1>
         <p class="card__desc" id="cardDesc"></p>
         <div class="card__divider" aria-hidden="true"></div>
@@ -276,7 +307,7 @@
               <path d="M16 2v4M8 2v4M3 10h18"/>
             </svg>
             <div>
-              <p class="meta-label">Date &amp; Time</p>
+              <p class="meta-label" data-i18n="meta-label-date">Date &amp; Time</p>
               <p class="meta-value" id="cardDate">—</p>
             </div>
           </div>
@@ -288,8 +319,8 @@
               <circle cx="12" cy="9" r="2.5"/>
             </svg>
             <div>
-              <p class="meta-label">Venue</p>
-              <p class="meta-value">The 661 Estate, Singapore</p>
+              <p class="meta-label" data-i18n="meta-label-venue">Venue</p>
+              <p class="meta-value" data-i18n="meta-value-venue">The 661 Estate, Singapore</p>
             </div>
           </div>
         </div>
@@ -305,7 +336,7 @@
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.564 4.14 1.543 5.871L.057 23.686a.5.5 0 00.614.634l5.985-1.578A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.917a9.893 9.893 0 01-5.04-1.377l-.361-.214-3.742.987 1.003-3.658-.235-.374A9.862 9.862 0 012.083 12C2.083 6.514 6.514 2.083 12 2.083S21.917 6.514 21.917 12 17.486 21.917 12 21.917z"/>
         </svg>
-        RSVP via WhatsApp
+        <span data-i18n="btn-rsvp">RSVP via WhatsApp</span>
       </a>
 
       <!-- Google Maps -->
@@ -317,7 +348,7 @@
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
           <circle cx="12" cy="9" r="2.5"/>
         </svg>
-        View on Google Maps
+        <span data-i18n="btn-maps">View on Google Maps</span>
       </a>
 
       <!-- Google Calendar -->
@@ -328,7 +359,7 @@
           <path d="M16 2v4M8 2v4M3 10h18"/>
           <path d="M8 14h2v2H8z"/>
         </svg>
-        Add to Google Calendar
+        <span data-i18n="btn-gcal">Add to Google Calendar</span>
       </a>
 
       <!-- Apple Calendar -->
@@ -339,19 +370,20 @@
           <path d="M16 2v4M8 2v4M3 10h18"/>
           <circle cx="12" cy="16" r="1"/>
         </svg>
-        Add to Apple Calendar
+        <span data-i18n="btn-acal">Add to Apple Calendar</span>
       </a>
     </div>
 
     <div class="footer-brand">
       <p>
-        Hosted at <a href="../specifications/">The 661 Estate</a>
+        <span data-i18n="footer-hosted-at">Hosted at</span> <a href="../specifications/">The 661 Estate</a>
         &nbsp;·&nbsp; Singapore
       </p>
     </div>
 
   </main>
 
+  <script src="../i18n.js"></script>
   <script>
   (function () {
     'use strict';

@@ -210,6 +210,36 @@
     }
     .gyro-hint.is-visible { opacity: 1; }
 
+    /* Language toggle — fixed position on landing page */
+    .lang-toggle-fixed {
+      position: fixed;
+      top: clamp(1rem, 3vw, 1.5rem);
+      right: clamp(1rem, 3vw, 1.5rem);
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.8rem;
+      padding: 0.35rem 0.6rem;
+      font-family: 'Montserrat', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 2px;
+      cursor: pointer;
+      background: transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeIn 1s var(--ease-out) 2.4s forwards;
+    }
+    .lang-toggle-fixed:hover {
+      color: var(--gold-light);
+      border-color: var(--gold-light);
+    }
     /* Animations */
     @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
     @keyframes slideUp   { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
@@ -218,6 +248,8 @@
   </style>
 </head>
 <body>
+
+  <button class="lang-toggle lang-toggle-fixed" aria-label="切换中文" lang="zh-Hans">中文</button>
 
   <!-- Background Layer -->
   <div id="bgLayer">
@@ -254,11 +286,11 @@
       <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10"/>
       <path d="M12 2v4M12 2l2.5 2.5M12 2L9.5 4.5"/>
     </svg>
-    Tilt to explore
+    <span data-i18n="tilt-hint">Tilt to explore</span>
   </div>
 
   <main class="stage" role="main">
-    <p class="estate-id">Singapore &nbsp;·&nbsp; Est. 2025</p>
+    <p class="estate-id" data-i18n="estate-id">Singapore &nbsp;·&nbsp; Est. 2025</p>
 
     <div class="monogram" aria-label="661">
       <span class="monogram__line" aria-hidden="true"></span>
@@ -267,19 +299,20 @@
       <span class="monogram__diamond" aria-hidden="true"></span>
     </div>
 
-    <p class="tagline">A house shaped by ambition.</p>
+    <p class="tagline" data-i18n="tagline">A house shaped by ambition.</p>
 
     <div class="cta-group">
       <a class="btn-enter" href="specifications/" id="enterBtn">
-        <span>Enter the Estate</span>
+        <span data-i18n="enter-estate">Enter the Estate</span>
         <span class="btn-arrow" aria-hidden="true"></span>
       </a>
     </div>
   </main>
 
   <div class="slide-dots" id="slideDots" aria-hidden="true"></div>
-  <p class="location-badge" aria-label="661 — Singapore">661 &nbsp;·&nbsp; Singapore</p>
+  <p class="location-badge" aria-label="661 — Singapore"><span data-i18n="location-badge">661 &nbsp;·&nbsp; Singapore</span></p>
 
+  <script src="i18n.js"></script>
   <script>
   (function () {
     'use strict';

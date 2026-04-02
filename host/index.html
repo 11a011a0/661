@@ -24,7 +24,7 @@
       --ink-mid:    #4a4a4a;
       --ink-soft:   #7a7a7a;
       --border:     rgba(201,168,76,0.22);
-      --font:       'Montserrat', system-ui, -apple-system, sans-serif;
+      --font:       'Montserrat', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
       --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -268,6 +268,17 @@
     @media (max-width: 400px) {
       .result__link-wrap { flex-direction: column; }
     }
+
+    /* Language toggle */
+    .lang-toggle {
+      font-size: 0.62rem; font-weight: 300; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-soft);
+      border: 1px solid var(--border); border-radius: 2px;
+      padding: 0.3rem 0.55rem; cursor: pointer;
+      background: transparent; white-space: nowrap; flex-shrink: 0;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lang-toggle:hover { color: var(--gold); border-color: var(--gold); }
   </style>
 </head>
 <body>
@@ -278,18 +289,21 @@
         <span class="brand__diamond" aria-hidden="true"></span>
         <span>661</span>
       </a>
-      <a class="nav__back" href="../">
-        <span class="nav__back-arrow" aria-hidden="true">&#8592;</span>
-        Home
-      </a>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <button class="lang-toggle" aria-label="切换中文" lang="zh-Hans">中文</button>
+        <a class="nav__back" href="../">
+          <span class="nav__back-arrow" aria-hidden="true">&#8592;</span>
+          <span data-i18n="nav-home">Home</span>
+        </a>
+      </div>
     </div>
   </header>
 
   <main class="page" role="main">
     <div class="page-head">
-      <span class="eyebrow">Owner Portal</span>
-      <h1 class="page-title">Create an Invitation</h1>
-      <p class="page-sub">
+      <span class="eyebrow" data-i18n="eyebrow-host">Owner Portal</span>
+      <h1 class="page-title" data-i18n="title-host">Create an Invitation</h1>
+      <p class="page-sub" data-i18n="sub-host">
         Fill in the event details below to generate a shareable invite link
         for your guests at The 661 Estate.
       </p>
@@ -300,8 +314,9 @@
 
         <!-- Title -->
         <div class="form-group">
-          <label for="eventTitle">Event Title</label>
+          <label for="eventTitle" data-i18n="label-event-title">Event Title</label>
           <input type="text" id="eventTitle" name="eventTitle"
+                 data-i18n-placeholder="ph-event-title"
                  placeholder="e.g. Rooftop Dinner, Poker Night, Garden BBQ"
                  maxlength="80" autocomplete="off" required />
         </div>
@@ -309,35 +324,36 @@
         <!-- Description -->
         <div class="form-group">
           <div class="char-row">
-            <label for="eventDesc">Description</label>
+            <label for="eventDesc" data-i18n="label-desc">Description</label>
             <span class="char-count" id="charCount">0 / 60</span>
           </div>
           <textarea id="eventDesc" name="eventDesc"
+                    data-i18n-placeholder="ph-event-desc"
                     placeholder="A short description of the event (60 characters max)"
                     maxlength="60" rows="3" required></textarea>
-          <p class="field-hint">Keep it punchy — your guests will see this on the invite.</p>
+          <p class="field-hint" data-i18n="hint-desc">Keep it punchy — your guests will see this on the invite.</p>
         </div>
 
         <!-- Date & Time -->
         <div class="form-group">
-          <label for="eventDate">Date &amp; Time</label>
+          <label for="eventDate" data-i18n="label-date">Date &amp; Time</label>
           <input type="datetime-local" id="eventDate" name="eventDate" required />
         </div>
 
         <!-- Mobile -->
         <div class="form-group">
-          <label for="eventPhone">Your WhatsApp Number</label>
+          <label for="eventPhone" data-i18n="label-phone">Your WhatsApp Number</label>
           <div class="phone-row">
             <span class="phone-prefix">+65</span>
             <input type="tel" id="eventPhone" name="eventPhone"
                    placeholder="9123 4567"
                    maxlength="12" autocomplete="tel" required />
           </div>
-          <p class="field-note">Guests will send their RSVP directly to you on WhatsApp.</p>
+          <p class="field-note" data-i18n="note-phone">Guests will send their RSVP directly to you on WhatsApp.</p>
         </div>
 
         <button type="submit" class="btn-primary" id="generateBtn">
-          Generate Invite Link
+          <span data-i18n="btn-generate">Generate Invite Link</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4"/>
@@ -348,12 +364,12 @@
 
       <!-- Result -->
       <div class="result" id="resultBox">
-        <p class="result__label">Your Invite Link</p>
+        <p class="result__label" data-i18n="result-label">Your Invite Link</p>
         <div class="result__link-wrap">
           <span class="result__link" id="resultLink"></span>
-          <button class="btn-copy" id="copyBtn" type="button">Copy</button>
+          <button class="btn-copy" id="copyBtn" type="button" data-i18n="btn-copy">Copy</button>
         </div>
-        <p class="result__note">
+        <p class="result__note" data-i18n="result-note">
           Share this link with your guests. They will see the event details
           along with a map, calendar button, and RSVP via WhatsApp.
         </p>
@@ -362,7 +378,7 @@
 
     <!-- Live Preview -->
     <div class="preview" id="previewBox">
-      <p class="preview__label">Preview</p>
+      <p class="preview__label" data-i18n="preview-label">Preview</p>
       <p class="preview__title" id="pvTitle">—</p>
       <p class="preview__desc" id="pvDesc"></p>
       <div class="preview__meta">
@@ -372,9 +388,10 @@
   </main>
 
   <footer class="footer">
-    <p>&copy; 2025 The 661 Estate</p>
+    <p data-i18n="footer-host">&copy; 2025 The 661 Estate</p>
   </footer>
 
+  <script src="../i18n.js"></script>
   <script>
   (function () {
     'use strict';
@@ -488,12 +505,16 @@
       var text = resultLink.textContent;
       if (!text) return;
 
+      var isChinese = document.documentElement.lang === 'zh-Hans';
+      var copiedText = isChinese ? '已复制！' : 'Copied!';
+      var copyText   = isChinese ? '复制' : 'Copy';
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function () {
-          copyBtn.textContent = 'Copied!';
+          copyBtn.textContent = copiedText;
           copyBtn.classList.add('is-copied');
           setTimeout(function () {
-            copyBtn.textContent = 'Copy';
+            copyBtn.textContent = copyText;
             copyBtn.classList.remove('is-copied');
           }, 2000);
         }).catch(function () { fallbackCopy(text); });
@@ -503,6 +524,9 @@
     });
 
     function fallbackCopy(text) {
+      var isChinese = document.documentElement.lang === 'zh-Hans';
+      var copiedText = isChinese ? '已复制！' : 'Copied!';
+      var copyText   = isChinese ? '复制' : 'Copy';
       var ta = document.createElement('textarea');
       ta.value = text;
       ta.style.position = 'fixed';
@@ -511,10 +535,10 @@
       ta.select();
       try { document.execCommand('copy'); } catch (err) {}
       document.body.removeChild(ta);
-      copyBtn.textContent = 'Copied!';
+      copyBtn.textContent = copiedText;
       copyBtn.classList.add('is-copied');
       setTimeout(function () {
-        copyBtn.textContent = 'Copy';
+        copyBtn.textContent = copyText;
         copyBtn.classList.remove('is-copied');
       }, 2000);
     }

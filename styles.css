@@ -16,7 +16,7 @@
   --ink-soft:    #7a7a7a;
   --border:      rgba(201, 168, 76, 0.25);
 
-  --font:        'Montserrat', system-ui, -apple-system, sans-serif;
+  --font:        'Montserrat', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
 
   --nav-h:       72px;
   --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
@@ -972,4 +972,39 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
     opacity: 1;
     transform: none;
   }
+}
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.6rem;
+  padding: 0.3rem 0.55rem;
+  font-family: var(--font);
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  cursor: pointer;
+  background: transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.lang-toggle:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* Light-on-dark variant (landing page, invite page) */
+.lang-toggle--light {
+  color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.lang-toggle--light:hover {
+  color: var(--gold-light);
+  border-color: var(--gold-light);
 }
